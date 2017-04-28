@@ -1,4 +1,4 @@
-//My custom Goggles Sketch
+//My custom Goggles Sketch with 2 modes
 //Pixels chase around the lenses beginning with a random color and offset
 //Random multi color sparks flash across both lenses
 
@@ -33,14 +33,14 @@ void loop() {
   switch(mode) {
     
     case 0: //RainbowChase
-    c = random(255);
-    offset = random(16);
-    for (uint8_t j=0; j < 16; j++) {     
+    c = random(255); //initial color seed
+    offset = random(16); //difference between LED position on the two lenses
+    for (uint8_t j=0; j < 16; j++) {  //step through color wheel   
     for (uint8_t i=0; i < 16; i++) {
        pixels.setPixelColor((16-i)%16,0);
        pixels.setPixelColor(16+(i+offset)%16,0);
        for (uint8_t q=1; q<6; q++) { //turn on next 5
-          pixels.setPixelColor((32-(i+q))%16, Wheel( (c+i+q+j*16) % 255));    //turn every third pixel on
+          pixels.setPixelColor((32-(i+q))%16, Wheel( (c+i+q+j*16) % 255));
           pixels.setPixelColor(16+(i+q+offset)%16, Wheel( (c+i+q+j*16) % 255)); 
        }
        pixels.show();
